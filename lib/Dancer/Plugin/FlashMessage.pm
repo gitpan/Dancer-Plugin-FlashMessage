@@ -51,7 +51,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.301
+version 0.302
 
 =head1 DESCRIPTION
 
