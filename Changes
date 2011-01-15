@@ -1,3 +1,8 @@
+0.303     2011-01-15 13:58:20 Europe/Paris
+	. Don't require Dancer::Plugin::TemplateToolkit (hence Template::Toolkit)
+	for tests
+	. Add warning about Dist::Zilla in Makefile.PL
+
 0.302     2011-01-11 17:41:49 Europe/Paris
 
 0.301     2011-01-11 17:40:16 Europe/Paris
