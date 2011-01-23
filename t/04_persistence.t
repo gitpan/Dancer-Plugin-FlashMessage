@@ -2,9 +2,11 @@ use Test::More tests => 7, import => ['!pass'];
 use Dancer ':syntax';
 use Dancer::Test;
 
-use_ok 'Dancer::Plugin::FlashMessage';
-
 setting views => path('t', 'views');
+
+# load the plugin with persistence enabled
+setting('plugins', { FlashMessage => { persistence => 1 } });
+use_ok 'Dancer::Plugin::FlashMessage';
 
 ok(
     get '/' => sub {
@@ -20,7 +22,7 @@ ok(
 # first time we get the error message
 route_exists [ GET => '/' ];
 response_content_like( [ GET => '/' ], qr/foo : bar, message : plop$/ );
-# second time the error has disappeared
+# second time the error is still there, thanks to persistence
 route_exists [ GET => '/different' ];
-response_content_like( [ GET => '/different' ], qr/foo : bar, message : \s*$/ );
+response_content_like( [ GET => '/different' ], qr/foo : bar, message : plop$/ );
 
