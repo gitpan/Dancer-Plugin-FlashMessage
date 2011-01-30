@@ -15,6 +15,7 @@ my %module_build_args = (
     'Test::More' => '0'
   },
   'configure_requires' => {
+    'ExtUtils::MakeMaker' => '6.31',
     'Module::Build' => '0.3601'
   },
   'dist_abstract' => 'Dancer plugin to display temporary messages, so called "flash messages".',
@@ -22,13 +23,13 @@ my %module_build_args = (
     'Damien "dams" Krotkine'
   ],
   'dist_name' => 'Dancer-Plugin-FlashMessage',
-  'dist_version' => '0.306',
+  'dist_version' => '0.307',
   'license' => 'perl',
   'module_name' => 'Dancer::Plugin::FlashMessage',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
-    'Dancer' => '0',
+    'Dancer' => '1.200',
     'Dancer::Plugin' => '0'
   },
   'script_files' => []
