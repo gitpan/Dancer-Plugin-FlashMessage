@@ -41,7 +41,7 @@ before_template sub {
                                                  session $session_hash_key, $flash;
                                                  return $value;
                                                } );
-                                 } ( keys %{session $session_hash_key || {} })
+                                 } ( keys %{session $session_hash_key or {} })
                           };
 };
 
@@ -59,7 +59,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.309
+version 0.310
 
 =head1 DESCRIPTION
 
