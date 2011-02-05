@@ -23,13 +23,12 @@ my $conf = plugin_setting;
 
 my $token_name       = $conf->{token_name}       || 'flash';
 my $session_hash_key = $conf->{session_hash_key} || '_flash';
-my $persistence      = $conf->{persistence}      || 0;
 
 register flash => sub ($;$) {
     my ($key, $value) = @_;
     my $flash = session $session_hash_key || {};
     @_ == 2 and $flash->{$key} = $value;
-    @_ == 1 and $value = $persistence ? $flash->{$key} : delete $flash->{$key};
+    @_ == 1 and $value = delete $flash->{$key};
     session $session_hash_key, $flash;
     return $value;
 };
@@ -38,7 +37,7 @@ before_template sub {
    shift->{$token_name} = {  map { my $key = $_; my $value;
                                    ( $key, sub { defined $value and return $value;
                                                  my $flash = session $session_hash_key || {};
-                                                 $value = $persistence ? $flash->{$key} : delete $flash->{$key};
+                                                 $value = delete $flash->{$key};
                                                  session $session_hash_key, $flash;
                                                  return $value;
                                                } );
@@ -60,7 +59,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.307
+version 0.308
 
 =head1 DESCRIPTION
 
@@ -75,7 +74,7 @@ message will be displayed. But that's not too hard (see L<SYNOPSYS>).
 Basically, the plugin gives you access to the 'flash' hash in your views. It
 can be used to display flash messages.
 
-By default, the plugin works using a descent configuration. However, you can
+By default, the plugin works using a decent configuration. However, you can
 change the behaviour of the plugin. See L<CONFIGURATION>
 
 =head1 NAME
@@ -114,18 +113,28 @@ In your Dancer App :
   # sets the flash message for the warning key
   flash warning => 'some warning message';
 
-  # retrieves and removes (unless persistence is true) the flash message for
-  # the warning key
+  # retrieves and removes the flash message for the warning key
   my $warning_message = flash 'warning';
 
 This method can take 1 or 2 parameters. When called with two parameters, it
 sets the flash message for the given key.
 
 When called with one parameter, it returns the value of the flash message of
-the given key. It usually also deletes this entry, but if you have set the
-'persistence' configuration key to true, the entry won't be deleted. See below
+the given key. The message is deleted from the flash hash in the session.
 
 In both cases, C<flash> always returns the value;
+
+=head1 IN YOUR TEMPLATE
+
+After having set a flash message using C<flash> in your Dancer route, you can
+access the flash message from within your template. The plugin provides you
+with the C<flash> hashref, that you can access in your template, for example
+like this :
+
+  <div class=error> <% flash.error %> </div>
+
+When you use it in your template, the flash message is deleted. So next
+time, C<flash.error> will not exist.
 
 =head1 CONFIGURATION
 
@@ -138,19 +147,12 @@ These are the default values. See below for a description of the keys
 
   plugins:
     FlashMessage:
-      persistence: 0
       token_name: flash
       session_hash_key: _flash
 
 =head2 configuration description
 
 =over
-
-=item persistence
-
-If set to a true value, flash messages will be persistent, i.e. survive more
-than one request. If set to a false value, flash messages will be suppressed
-once templating has been done. B<Default> : C<0>
 
 =item token_name
 

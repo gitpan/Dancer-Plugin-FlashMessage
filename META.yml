@@ -13,7 +13,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.31
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 4.200001, CPAN::Meta::Converter version 2.110320'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -22,11 +22,11 @@ name: Dancer-Plugin-FlashMessage
 provides:
   Dancer::Plugin::FlashMessage:
     file: lib/Dancer/Plugin/FlashMessage.pm
-    version: 0.307
+    version: 0.308
 requires:
   Dancer: 1.200
   Dancer::Plugin: 0
 resources:
   homepage: http://search.cpan.org/dist/Dancer-Plugin-FlashMessage
   repository: http://github.com/dams/Dancer-Plugin-FlashMessage
-version: 0.307
+version: 0.308

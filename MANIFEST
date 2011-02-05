@@ -13,7 +13,6 @@ t/00-compile.t
 t/01_base.t
 t/02_flash.t
 t/03_retrieve.t
-t/04_persistence.t
 t/author-critic.t
 t/release-distmeta.t
 t/release-pod-coverage.t

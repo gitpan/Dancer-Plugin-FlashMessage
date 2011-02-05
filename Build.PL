@@ -23,7 +23,7 @@ my %module_build_args = (
     'Damien "dams" Krotkine'
   ],
   'dist_name' => 'Dancer-Plugin-FlashMessage',
-  'dist_version' => '0.307',
+  'dist_version' => '0.308',
   'license' => 'perl',
   'module_name' => 'Dancer::Plugin::FlashMessage',
   'recommends' => {},
