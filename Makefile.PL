@@ -28,10 +28,11 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Dancer::Plugin::FlashMessage',
   'PREREQ_PM' => {
+    'Carp' => '0',
     'Dancer' => '1.200',
     'Dancer::Plugin' => '0'
   },
-  'VERSION' => '0.310',
+  'VERSION' => '0.311',
   'test' => {
     'TESTS' => 't/*.t'
   }

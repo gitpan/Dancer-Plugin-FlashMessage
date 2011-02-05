@@ -23,12 +23,13 @@ my %module_build_args = (
     'Damien "dams" Krotkine'
   ],
   'dist_name' => 'Dancer-Plugin-FlashMessage',
-  'dist_version' => '0.310',
+  'dist_version' => '0.311',
   'license' => 'perl',
   'module_name' => 'Dancer::Plugin::FlashMessage',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
+    'Carp' => '0',
     'Dancer' => '1.200',
     'Dancer::Plugin' => '0'
   },

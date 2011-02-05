@@ -6,26 +6,33 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-package Dancer::Plugin::FlashMessage;
-
-# ABSTRACT: Dancer plugin to display temporary messages, so called "flash messages".
-
 use strict;
 use warnings;
 
+package Dancer::Plugin::FlashMessage;
+BEGIN {
+  $Dancer::Plugin::FlashMessage::VERSION = '0.311';
+}
+# ABSTRACT: Dancer plugin to display temporary messages, so called "flash messages".
+
+use Carp;
 use Dancer ':syntax';
 use Dancer::Plugin;
 
 our $AUTHORITY = 'DAMS';
-our $VERSION = '0.2';
 
 my $conf = plugin_setting;
 
 my $token_name       = $conf->{token_name}       || 'flash';
 my $session_hash_key = $conf->{session_hash_key} || '_flash';
+my $session_engine;
 
 register flash => sub ($;$) {
     my ($key, $value) = @_;
+
+    $session_engine ||= engine 'session'
+      or croak __PACKAGE__ . " error2 : there is no session engine configured in the configuration. You need a session engine to be able to use this plugin";
+
     my $flash = session $session_hash_key || {};
     @_ == 2 and $flash->{$key} = $value;
     @_ == 1 and $value = delete $flash->{$key};
@@ -34,15 +41,15 @@ register flash => sub ($;$) {
 };
 
 before_template sub {
-   shift->{$token_name} = {  map { my $key = $_; my $value;
-                                   ( $key, sub { defined $value and return $value;
-                                                 my $flash = session $session_hash_key || {};
-                                                 $value = delete $flash->{$key};
-                                                 session $session_hash_key, $flash;
-                                                 return $value;
-                                               } );
-                                 } ( keys %{session $session_hash_key or {} })
-                          };
+    shift->{$token_name} = {  map { my $key = $_; my $value;
+                                    ( $key, sub { defined $value and return $value;
+                                                  my $flash = session $session_hash_key || {};
+                                                  $value = delete $flash->{$key};
+                                                  session $session_hash_key, $flash;
+                                                  return $value;
+                                              } );
+                                } ( keys %{session $session_hash_key or {} })
+                           };
 };
 
 register_plugin;
@@ -59,7 +66,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.310
+version 0.311
 
 =head1 DESCRIPTION
 
@@ -83,7 +90,14 @@ Dancer::Plugin::FlashMessage - A plugin to display "flash messages" : short temp
 
 =head1 SYNOPSYS
 
-Example with Template Toolkit: in your index.tt view or in your layout :
+Example with Template Toolkit
+
+In your configuration, make sure you have session configured. Of course you can
+use any session engine :
+
+  session: "simple"
+
+In your index.tt view or in your layout :
 
   <% IF flash.error %>
     <div class=error> <% flash.error %> </div>
