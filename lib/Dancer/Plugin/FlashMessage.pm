@@ -11,7 +11,7 @@ use warnings;
 
 package Dancer::Plugin::FlashMessage;
 BEGIN {
-  $Dancer::Plugin::FlashMessage::VERSION = '0.311';
+  $Dancer::Plugin::FlashMessage::VERSION = '0.312';
 }
 # ABSTRACT: Dancer plugin to display temporary messages, so called "flash messages".
 
@@ -66,7 +66,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.311
+version 0.312
 
 =head1 DESCRIPTION
 
