@@ -22,7 +22,7 @@ name: Dancer-Plugin-FlashMessage
 provides:
   Dancer::Plugin::FlashMessage:
     file: lib/Dancer/Plugin/FlashMessage.pm
-    version: 0.312
+    version: 0.313
 requires:
   Carp: 0
   Dancer: 1.3001
@@ -30,4 +30,4 @@ requires:
 resources:
   homepage: http://search.cpan.org/dist/Dancer-Plugin-FlashMessage
   repository: http://github.com/dams/Dancer-Plugin-FlashMessage
-version: 0.312
+version: 0.313
