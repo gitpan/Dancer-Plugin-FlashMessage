@@ -8,7 +8,6 @@ README
 README.pod
 dist.ini
 lib/Dancer/Plugin/FlashMessage.pm
-logs/development.log
 t/00-compile.t
 t/01_base.t
 t/02_flash.t

@@ -4,37 +4,39 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Dancer plugin to display temporary messages, so called "flash messages".',
-  'AUTHOR' => 'Damien "dams" Krotkine',
-  'BUILD_REQUIRES' => {
-    'Dancer::Test' => '0',
-    'English' => '0',
-    'File::Find' => '0',
-    'File::Temp' => '0',
-    'Module::Build' => '0.3601',
-    'Test::More' => '0'
+  "ABSTRACT" => "Dancer plugin to display temporary messages, so called \"flash messages\".",
+  "AUTHOR" => "Damien \"dams\" Krotkine",
+  "BUILD_REQUIRES" => {
+    "Dancer::Test" => 0,
+    "English" => 0,
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "Module::Build" => "0.3601",
+    "Test::More" => 0
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31',
-    'Module::Build' => '0.3601'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30",
+    "Module::Build" => "0.3601"
   },
-  'DISTNAME' => 'Dancer-Plugin-FlashMessage',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Dancer::Plugin::FlashMessage',
-  'PREREQ_PM' => {
-    'Carp' => '0',
-    'Dancer' => '1.3001',
-    'Dancer::Plugin' => '0'
+  "DISTNAME" => "Dancer-Plugin-FlashMessage",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Dancer::Plugin::FlashMessage",
+  "PREREQ_PM" => {
+    "Carp" => 0,
+    "Dancer" => "1.3001",
+    "Dancer::Plugin" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '0.313',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "0.314",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 

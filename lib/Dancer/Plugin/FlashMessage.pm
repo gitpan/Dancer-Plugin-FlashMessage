@@ -10,8 +10,8 @@ use strict;
 use warnings;
 
 package Dancer::Plugin::FlashMessage;
-BEGIN {
-  $Dancer::Plugin::FlashMessage::VERSION = '0.313';
+{
+  $Dancer::Plugin::FlashMessage::VERSION = '0.314';
 }
 # ABSTRACT: Dancer plugin to display temporary messages, so called "flash messages".
 
@@ -40,7 +40,7 @@ register flash => sub ($;$) {
     return $value;
 };
 
-before_template sub {
+hook before_template => sub {
     shift->{$token_name} = {  map { my $key = $_; my $value;
                                     ( $key, sub { defined $value and return $value;
                                                   my $flash = session($session_hash_key) || {};
@@ -66,7 +66,7 @@ Dancer::Plugin::FlashMessage - Dancer plugin to display temporary messages, so c
 
 =head1 VERSION
 
-version 0.313
+version 0.314
 
 =head1 DESCRIPTION
 
